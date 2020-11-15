@@ -12,7 +12,9 @@ import lombok.extern.slf4j.Slf4j;
  * redis 适配器， 适配redis的各种模式处理类
  */
 @Slf4j
+@SuppressWarnings("Duplicates")
 public class RedisAdapter {
+
     private String redisMode;
 
     public RedisAdapter(){}

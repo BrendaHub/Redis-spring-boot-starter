@@ -60,7 +60,7 @@ public class RedisClusteProcessor extends AbstractRedisProcessor {
     }
 
     @Override
-    public void set(String key, Object obj) {
+    public void setObj(String key, Object obj) {
         JedisCluster jedis;
         try {
             if (key != null && obj != null) {
@@ -111,7 +111,7 @@ public class RedisClusteProcessor extends AbstractRedisProcessor {
     }
 
     @Override
-    public void setex(String key, Object obj, int seconds) {
+    public void setexObj(String key, Object obj, int seconds) {
         JedisCluster jedis;
         try {
             if (key != null && obj != null && seconds > 0) {
@@ -207,7 +207,7 @@ public class RedisClusteProcessor extends AbstractRedisProcessor {
 
     @SuppressWarnings("unchecked")
     @Override
-    public <T> T get(String key, Class<T> clazz) {
+    public <T> T getObj(String key, Class<T> clazz) {
         JedisCluster jedis;
         try {
             if (key != null) {
@@ -520,6 +520,25 @@ public class RedisClusteProcessor extends AbstractRedisProcessor {
         try {
             jedis = getCluster();
             return key == null ? null : jedis.rpop(key);
+        } catch (Exception e) {
+            log.error("easyRedis Cluster error: ", e);
+        } finally {
+            close();
+        }
+        return null;
+    }
+
+    @Override
+    public List<String> blpop(String key, int seconds) {
+        JedisCluster jedis;
+        try {
+            if (key != null && seconds > 0) {
+                jedis = getCluster();
+                return jedis.blpop(seconds, key);
+            } else {
+                log.error("easyRedis Cluster params error,method:BLPOP key:{} seconds:{}  ", key, seconds);
+            }
+
         } catch (Exception e) {
             log.error("easyRedis Cluster error: ", e);
         } finally {

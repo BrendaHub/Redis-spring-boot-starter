@@ -1,11 +1,10 @@
 package com.loiter.easy.redis.core;
 
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter
-@Setter
 @ToString
 public class RedisEnvironment {
 
@@ -23,4 +22,28 @@ public class RedisEnvironment {
     private String processorClusterkey = DEFAULT_PROCESSOR_CLUSTER_KEY;
 
     private String processorSentinelkey = DEFAULT_PROCESSOR_SENTINEL_KEY;
+
+    public Boolean getRedisConnectionFactoryIsInit() {
+        return redisConnectionFactoryIsInit;
+    }
+
+    public void setRedisConnectionFactoryIsInit(Boolean redisConnectionFactoryIsInit) {
+        this.redisConnectionFactoryIsInit = redisConnectionFactoryIsInit;
+    }
+
+    public static String getDefaultAdapterKey() {
+        return DEFAULT_ADAPTER_KEY;
+    }
+
+    public static String getDefaultProcessorSingleKey() {
+        return DEFAULT_PROCESSOR_SINGLE_KEY;
+    }
+
+    public static String getDefaultProcessorClusterKey() {
+        return DEFAULT_PROCESSOR_CLUSTER_KEY;
+    }
+
+    public static String getDefaultProcessorSentinelKey() {
+        return DEFAULT_PROCESSOR_SENTINEL_KEY;
+    }
 }

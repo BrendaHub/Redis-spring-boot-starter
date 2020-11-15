@@ -26,7 +26,7 @@ public interface RedisCommands {
     void set(String key, String value);
 
     // 添加key value
-    void set(String key, Object obj);
+    void setObj(String key, Object obj);
 
     /**
      * 添加key并设置过期时间
@@ -42,7 +42,7 @@ public interface RedisCommands {
      * @param obj
      * @param seconds 过期时间单位为秒
      */
-    void setex(String key, Object obj, int seconds);
+    void setexObj(String key, Object obj, int seconds);
 
     String get(String key);
 
@@ -52,7 +52,7 @@ public interface RedisCommands {
 
     ScanResult<String> scan(String regx);
 
-    <T> T get(String key, Class<T> clazz);
+    <T> T getObj(String key, Class<T> clazz);
 
     Long getValid(String key);
 
@@ -93,6 +93,14 @@ public interface RedisCommands {
     String lpop(String key);
 
     String rpop(String key);
+    /**
+     * redis阻塞队列
+     *
+     * @param key     redis#key
+     * @param seconds 过期时间单位（S）
+     * @return
+     */
+    List<String> blpop(String key, int seconds);
 
     void setTimeOut(String key, int seconds);
 

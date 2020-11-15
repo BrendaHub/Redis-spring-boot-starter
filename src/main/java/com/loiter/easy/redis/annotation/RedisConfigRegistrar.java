@@ -6,6 +6,7 @@ import com.loiter.easy.redis.core.RedisEnvironment;
 import com.loiter.easy.redis.handler.RedisClusteProcessor;
 import com.loiter.easy.redis.handler.RedisSentinelProcessor;
 import com.loiter.easy.redis.handler.RedisSingleProcessor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.context.annotation.ImportBeanDefinitionRegistrar;
 import org.springframework.core.annotation.AnnotationAttributes;
@@ -14,6 +15,7 @@ import org.springframework.core.type.AnnotationMetadata;
 /**
  * Redis 配置初始化
  */
+@Slf4j
 public class RedisConfigRegistrar implements ImportBeanDefinitionRegistrar {
     @Override
     public void registerBeanDefinitions(AnnotationMetadata annotationMetadata, BeanDefinitionRegistry beanDefinitionRegistry) {
